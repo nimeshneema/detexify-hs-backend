@@ -1,29 +1,54 @@
 # Detexify Backend Server implemented in Haskell
 
-## Requirements
+This Haskell project is developed using an older version of Haskell toolchain.
 
-- Haskell Platform
-- `$ cabal install --only-dependencies`
+Follow the below mentioned steps to build on an Intel x86_64 Mac.
 
-## Compile
+Run `ghcup tui` and ensure you are running the following version of the various tools:
 
-    $ cabal build
+```
+GHCup 0.1.50.1
 
-## Run
+Stack 3.3.1
 
-    $ dist/build/detexify-hs-backend/detexify-hs-backend
+HLS 2.10.0.0
 
-will run the webserver on port 3000. It will load training data from snapshot.json.
+cabal 3.12.1.0
 
-## Docker
+GHC 8.10.7
+```
 
-    docker build -t kirel/detexify-hs-backend .
-    docker push kirel/detexify-hs-backend
+Now run the following command-line one-by-one to install project dependencies:
 
-## Deploy
+```bash
+cabal update
+```
 
-    ansible-playbook ansible/deploy.yml -i ansible/inventory
+followed by:
 
-## License
+```bash
+cabal install --only-dependencies --overwrite-policy=always
+```
 
-Copyright (c) 2009 Daniel Kirsch, released under the MIT license, see MIT-LICENSE
+Once all the dependency installation is done successfully, the following message is displayed:
+
+```bash
+Symlinking 'detexify-hs-backend' to
+'~/.cabal/bin/detexify-hs-backend'
+```
+
+where `~` is replaced by the path to current users home directory.
+
+Now run the following command-line to build the project:
+
+```bash
+cabal build
+```
+
+This should successfully build the project.
+
+Now run the following command-line to run the backend:
+
+```bash
+cabal run
+```
